@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: GeniusHome
+
+Globals:
+  Function:
+    Runtime: python3.10
+    Timeout: 10
+
+Resources:
+  # SSM
+  TelegramBotToken:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: TELEGRAM_BOT_TOKEN
+      Type: String
+      Value: PLACEHOLDER
+
+  # DynamoDB
+  Subscribers:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: Subscribers
+      PrimaryKey:
+        Name: chat_id
+        Type: String
+
+  # Lambda
+  HandleCommands:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: HandleCommands
+      CodeUri: lambda_functions/
+      Handler: handle_commands.lambda_handler
+      FunctionUrlConfig:
+        AuthType: NONE
+      Environment:
+        Variables:
+          IsWebhookSet: false
+      Policies:
+        - Statement:
+            Effect: Allow
+            Action: ssm:GetParameter
+            Resource: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/TELEGRAM_BOT_TOKEN"
+        - Statement:
+            Effect: Allow
+            Action: lambda:GetFunctionUrlConfig
+            Resource: "*"
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:DeleteItem
+            Resource: !GetAtt Subscribers.Arn

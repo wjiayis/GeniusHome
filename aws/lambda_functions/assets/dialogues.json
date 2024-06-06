@@ -1,0 +1,8 @@
+{
+    "start_success": "Hi! Welcome to GeniusHome 🏠.",
+    "subscribe_prompt": "Enter /subscribe to subscribe to notifications.",
+    "subscribe_success": "Successfully subscribed!",
+    "unsubscribe_prompt": "Enter /unsubscribe to unsubscribe to notifications.",
+    "unsubscribe_success": "Successfully unsubscribed!",
+    "fallback": "I didn't understand that command. Please try again."
+}
