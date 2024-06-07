@@ -53,3 +53,10 @@ Resources:
               - dynamodb:PutItem
               - dynamodb:DeleteItem
             Resource: !GetAtt Subscribers.Arn
+
+  # CloudWatch
+  HandleCommandsLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/HandleCommands
+      RetentionInDays: 14
