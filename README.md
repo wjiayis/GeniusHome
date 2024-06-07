@@ -14,9 +14,9 @@
 
 - Sensors
 
-  | Device Model | Purpose                                                   | Price (SGD) |
-  | ------------ | --------------------------------------------------------- | ----------- |
-  | BME280       | Measuring temperature, air pressure and relative humidity | $3.82       |
+  | Device Model | Purpose                                                   | Quantity | Unit Price (SGD) |
+  | ------------ | --------------------------------------------------------- | -------- | ---------------- |
+  | BME280       | Measuring temperature, air pressure and relative humidity | 1        | $3.82            |
 
 - Micro-controllers
 
