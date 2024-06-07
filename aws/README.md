@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-1. The `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` of an IAM user with administrator access. You may follow [this guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/prerequisites.html) to acquire them.
-2. The authentification token `TELEGRAM_BOT_TOKEN` of a Telegram bot. You may follow [this guide](https://core.telegram.org/bots#how-do-i-create-a-bot) to acquire it.
+1. The `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` of an IAM user with administrator access. You may follow [this guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/prerequisites.html) to obtain them.
+2. The authentification token `TELEGRAM_BOT_TOKEN` of a Telegram bot. You may follow [this guide](https://core.telegram.org/bots#how-do-i-create-a-bot) to obtain it.
 
 ## Set Up
 
