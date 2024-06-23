@@ -1,8 +1,14 @@
 # GeniusHome
 
-## Overall Architecture
+## Architecture
 
 ![architecture diagram](docs/architecture_diagram.svg)
+
+<details>
+  <summary>Balcony Module</summary>
+  
+  ![balcony module](docs/balcony_module.jpeg)
+</details>
 
 ## Implemented Features
 
