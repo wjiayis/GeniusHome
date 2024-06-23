@@ -30,3 +30,6 @@ def merge_responses(curr_response: dict, new_response: dict) -> dict:
         response_status_code = new_response_status_code
         response_text = "\n\n".join([response_text, new_response_text]) if len(response_text) else new_response_text
     return {"status_code": response_status_code, "text": response_text}
+
+def init_response() -> dict:
+    return {"status_code": 200, "text": ""}
