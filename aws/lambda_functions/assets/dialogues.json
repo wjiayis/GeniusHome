@@ -4,5 +4,7 @@
     "subscribe_success": "Successfully subscribed!",
     "unsubscribe_prompt": "Enter /unsubscribe to unsubscribe to notifications.",
     "unsubscribe_success": "Successfully unsubscribed!",
-    "fallback": "I didn't understand that command. Please try again."
+    "developer_success": "Successfully added as developer!",
+    "command_fallback": "I didn't understand that command. Please try again.",
+    "rainfall_warning": "It may rain soon!"
 }

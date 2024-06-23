@@ -1,0 +1,27 @@
+i2c:
+  sda: GPIO04
+  scl: GPIO05
+  scan: true
+
+http_request:
+  verify_ssl: false
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      id: balcony_temperature
+    pressure:
+      id: balcony_pressure
+    humidity:
+      id: balcony_humidity
+      on_value:
+        http_request.post:
+          url: !secret HandleMCU_FUNCTION_URL
+          json:
+            balcony_temperature: !lambda |-
+              return to_string(id(balcony_temperature).state);
+            balcony_pressure: !lambda |-
+              return to_string(id(balcony_pressure).state);
+            balcony_humidity: !lambda |-
+              return to_string(id(balcony_humidity).state);
+    address: 0x76

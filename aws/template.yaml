@@ -25,38 +25,82 @@ Resources:
         Name: chat_id
         Type: String
 
+  Developers:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: Developers
+      PrimaryKey:
+        Name: chat_id
+        Type: String
+
+  SensorReadings:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: SensorReadings
+      PrimaryKey:
+        Name: time
+        Type: Number # yyyymmddhhmmss
+
   # Lambda
-  HandleCommands:
+  HandleCommand:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: HandleCommands
+      FunctionName: HandleCommand
       CodeUri: lambda_functions/
-      Handler: handle_commands.lambda_handler
+      Handler: handle_command.lambda_handler
       FunctionUrlConfig:
         AuthType: NONE
-      Environment:
-        Variables:
-          IsWebhookSet: false
       Policies:
+        # parameter store
         - Statement:
             Effect: Allow
             Action: ssm:GetParameter
             Resource: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/TELEGRAM_BOT_TOKEN"
-        - Statement:
-            Effect: Allow
-            Action: lambda:GetFunctionUrlConfig
-            Resource: "*"
+        # dynamodb
         - Statement:
             Effect: Allow
             Action:
               - dynamodb:GetItem
               - dynamodb:PutItem
               - dynamodb:DeleteItem
-            Resource: !GetAtt Subscribers.Arn
+            Resource:
+              - !GetAtt Subscribers.Arn
+              - !GetAtt Developers.Arn
+
+  HandleMCU:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: HandleMCU
+      CodeUri: lambda_functions/
+      Handler: handle_mcu.lambda_handler
+      FunctionUrlConfig:
+        AuthType: NONE
+      Policies:
+        # parameter store
+        - Statement:
+            Effect: Allow
+            Action: ssm:GetParameter
+            Resource: !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/TELEGRAM_BOT_TOKEN"
+        # dynamodb
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:Scan
+              - dynamodb:PutItem
+            Resource:
+              - !GetAtt Subscribers.Arn
+              - !GetAtt Developers.Arn
+              - !GetAtt SensorReadings.Arn
 
   # CloudWatch
-  HandleCommandsLogGroup:
+  HandleCommandLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: /aws/lambda/HandleCommands
-      RetentionInDays: 14
+      LogGroupName: /aws/lambda/HandleCommand
+      RetentionInDays: 7
+
+  HandleMCULogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/HandleMCU
+      RetentionInDays: 7
