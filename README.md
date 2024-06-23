@@ -25,8 +25,6 @@
 | Micro-controller Unit | ESP8266 D1 Mini | 1        | $2.94            |                                                                              |
 | Enclosure             | Cuboid Box      | 1        | $2.18            |                                                                              |
 | Battery               | AAA             | 4        | $2.29            |                                                                              |
-| Miscellaneous         | Thin wire       |          |                  |                                                                              |
-|                       | Solder          |          |                  |                                                                              |
 
 ### AWS
 
