@@ -8,20 +8,25 @@ http_request:
 
 sensor:
   - platform: bme280_i2c
+    update_interval: 5min
     temperature:
       id: balcony_temperature
+      oversampling: 1x
     pressure:
       id: balcony_pressure
+      oversampling: 1x
     humidity:
       id: balcony_humidity
+      oversampling: 1x
       on_value:
-        http_request.post:
-          url: !secret HandleMCU_FUNCTION_URL
-          json:
-            balcony_temperature: !lambda |-
-              return to_string(id(balcony_temperature).state);
-            balcony_pressure: !lambda |-
-              return to_string(id(balcony_pressure).state);
-            balcony_humidity: !lambda |-
-              return to_string(id(balcony_humidity).state);
+        then:
+          - http_request.post:
+              url: !secret HandleMCU_FUNCTION_URL
+              json:
+                balcony_temperature: !lambda |-
+                  return to_string(id(balcony_temperature).state);
+                balcony_pressure: !lambda |-
+                  return to_string(id(balcony_pressure).state);
+                balcony_humidity: !lambda |-
+                  return to_string(id(balcony_humidity).state);
     address: 0x76
