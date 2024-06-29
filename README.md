@@ -28,17 +28,7 @@
 
 ### AWS
 
-- User facing
-
-  No cost involved.
-
-- Developer facing
-
-  | Service        | Purpose                | [Always Free Tier](https://aws.amazon.com/free) | [Monthly Cost (SGD)](https://calculator.aws/#/) |
-  | -------------- | ---------------------- | ----------------------------------------------- | ----------------------------------------------- |
-  | S3             | infrastructure as code | ❌                                              | < $0.005                                        |
-  | CloudFormation | infrastructure as code | ✅                                              | 0                                               |
-  | CloudWatch     | performance monitoring | ✅                                              | 0                                               |
+No cost involved.
 
 ### Telegram
 
