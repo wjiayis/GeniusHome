@@ -7,9 +7,11 @@
 
 ## Set Up
 
-1. Connect your ESP8266 with a USB cable to your computer.
+1. (Disconnect your ESP8266 from your batteries and) connect your ESP8266 with a USB cable to your computer.
 
-2. Run the following Docker container.
+2. Open Docker.
+
+3. Run the following Docker container.
 
 ```bash
 docker run -p 6052:6052 ghcr.io/esphome/esphome
