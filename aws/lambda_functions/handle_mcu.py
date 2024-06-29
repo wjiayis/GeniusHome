@@ -38,7 +38,7 @@ def lambda_handler(event, context):
 
     for subscriber in subscribers:
 
-        if float(mcu_data["balcony_humidity"]) > 85:
+        if float(mcu_data["balcony_humidity"]) > 71:
             new_response = send_message(subscriber, ["rainfall_warning"], response)
             response = merge_responses(response, new_response)
 
